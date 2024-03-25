@@ -1,7 +1,7 @@
 const stopBtn = document.getElementById('stopBtn');
 const resetBtn = document.getElementById('resetBtn');
 const startBtn = document.getElementById('startBtn');
-
+let storeTiem;
 let hours = 0;
 let minute = 0;
 let second = 0;
@@ -10,14 +10,19 @@ var timer = false;
 
 
 function start() {
-    let timer = true
+    timer = true
     startWatch();
 
 }
 function stop() {
-    let timer = false;
+    clearTimeout(storeTiem)
+ timer = false;
 }
 function reset() {
+    hours = 0;
+    minute = 0;
+    second = 0;
+    mili = 0;
     let timer = false;
 }
 
@@ -26,7 +31,7 @@ function startWatch() {
 
     if (timer = true) {
         mili = mili + 1;
-        
+
         if (mili == 100) {
             second = second + 1;
             mili = 0;
@@ -36,7 +41,7 @@ function startWatch() {
             second = 0;
         }
         if (minute == 60) {
-            hours =  hours+ 1;
+            hours = hours + 1;
             second = 0;
         }
 
@@ -44,7 +49,7 @@ function startWatch() {
         document.getElementById("minute").innerHTML = minute;
         document.getElementById("second").innerHTML = second;
         document.getElementById("miliSecond").innerHTML = mili;
-        setTimeout( "startWatch()", 10);
+        storeTiem = setTimeout("startWatch()", 10);
     }
 }
 
